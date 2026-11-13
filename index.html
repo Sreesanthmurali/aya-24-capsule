@@ -1,0 +1,1507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>24 Chapters of Aya — 24th Birthday Capsule</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Dancing+Script:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-dark: #120A0E;
+      --bg-surface: #1B1016;
+      --bg-card: rgba(35, 21, 29, 0.88);
+      --bg-card-hover: rgba(44, 26, 36, 0.95);
+      --color-rose: #D9A0A8;
+      --color-rose-deep: #A85C70;
+      --color-rose-muted: #8E4455;
+      --color-gold: #E6BA75;
+      --color-parchment: #FDFBF7;
+      --color-ivory: #F3E9E2;
+      --color-text-dim: #A8959C;
+      --border-subtle: rgba(217, 160, 168, 0.18);
+      --border-active: rgba(217, 160, 168, 0.5);
+      --font-display: 'Cormorant Garamond', serif;
+      --font-script: 'Dancing Script', cursive;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.4);
+      --shadow-glow: 0 0 35px rgba(217, 160, 168, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--color-parchment);
+      font-family: var(--font-sans);
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.6;
+      background-image: 
+        radial-gradient(circle at 15% 20%, rgba(168, 92, 112, 0.14) 0%, transparent 45%),
+        radial-gradient(circle at 85% 80%, rgba(230, 186, 117, 0.1) 0%, transparent 50%),
+        linear-gradient(180deg, #120A0E 0%, #190D13 50%, #0F080C 100%);
+    }
+
+    /* Translucent Falling Rose Petals Canvas */
+    /* Positioned behind interactive elements (z-index: 1) with pointer-events: none */
+    /* Ensures zero obstruction for reading or tapping! */
+    #petals-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.85;
+    }
+
+    /* App Shell */
+    .app-container {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px 20px 80px 20px;
+    }
+
+    /* Header Section with Botanical Floral Accents */
+    .hero-header {
+      text-align: center;
+      padding: 35px 15px 25px 15px;
+      position: relative;
+    }
+
+    .hero-floral-left {
+      position: absolute;
+      top: 10px;
+      left: max(10px, 8%);
+      width: clamp(45px, 6vw, 75px);
+      height: auto;
+      opacity: 0.65;
+      filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4));
+      transform: rotate(-15deg);
+      pointer-events: none;
+      animation: floatFloral 5s ease-in-out infinite alternate;
+    }
+
+    .hero-floral-right {
+      position: absolute;
+      top: 10px;
+      right: max(10px, 8%);
+      width: clamp(45px, 6vw, 75px);
+      height: auto;
+      opacity: 0.65;
+      filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4));
+      transform: rotate(18deg) scaleX(-1);
+      pointer-events: none;
+      animation: floatFloral 5.5s ease-in-out infinite alternate-reverse;
+    }
+
+    @keyframes floatFloral {
+      from { transform: translateY(0) rotate(-12deg); }
+      to { transform: translateY(8px) rotate(-18deg); }
+    }
+
+    .badge-milestone {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(217, 160, 168, 0.12);
+      border: 1px solid var(--border-active);
+      padding: 6px 18px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-rose);
+      margin-bottom: 16px;
+      backdrop-filter: blur(8px);
+    }
+
+    .badge-flower-icon {
+      width: 18px;
+      height: 18px;
+      object-fit: contain;
+      vertical-align: middle;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 6.5vw, 64px);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin-bottom: 10px;
+      overflow-wrap: break-word;
+      background: linear-gradient(135deg, #FFF 20%, var(--color-rose) 60%, var(--color-gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-family: var(--font-script);
+      font-size: clamp(20px, 4vw, 30px);
+      color: var(--color-rose);
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      overflow-wrap: break-word;
+      padding: 0 10px;
+    }
+
+    .hero-dedication {
+      font-size: 15px;
+      color: var(--color-text-dim);
+      max-width: 620px;
+      margin: 0 auto 28px auto;
+    }
+
+    /* Music Player Floating Bar */
+    .audio-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(35, 21, 29, 0.88);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border-active);
+      padding: 8px 22px;
+      border-radius: 40px;
+      cursor: pointer;
+      box-shadow: var(--shadow-soft);
+      transition: all 0.3s ease;
+      margin-bottom: 25px;
+    }
+
+    .audio-pill:hover {
+      border-color: var(--color-rose);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .vinyl-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #D9A0A8 20%, #2B1718 21%, #2B1718 60%, #A85C70 61%, #120A0E 100%);
+      border: 2px solid var(--color-rose);
+      animation: spinVinyl 3.5s linear infinite;
+      animation-play-state: paused;
+    }
+
+    .vinyl-icon.playing {
+      animation-play-state: running;
+    }
+
+    @keyframes spinVinyl {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .audio-text {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--color-parchment);
+    }
+
+    /* Progress Tracker Card */
+    .tracker-card {
+      background: rgba(27, 16, 22, 0.75);
+      backdrop-filter: blur(18px);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      padding: 20px 24px;
+      margin-bottom: 35px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .tracker-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tracker-label {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--color-parchment);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tracker-count {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--color-gold);
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 999px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--color-rose-deep), var(--color-rose), var(--color-gold));
+      border-radius: 999px;
+      transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Filter Pills */
+    .filter-bar {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      margin-bottom: 25px;
+      scrollbar-width: none;
+    }
+
+    .filter-bar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .filter-btn {
+      white-space: nowrap;
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-subtle);
+      padding: 8px 18px;
+      border-radius: 30px;
+      color: var(--color-text-dim);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--color-rose-deep);
+      border-color: var(--color-rose);
+      color: #FFF;
+      box-shadow: 0 4px 15px rgba(168, 92, 112, 0.35);
+    }
+
+    /* Cards Grid */
+    .capsule-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 22px;
+    }
+
+    /* Individual Capsule Card - with backdrop-blur for 100% readable text */
+    .capsule-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-subtle);
+      border-radius: 18px;
+      padding: 22px;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 230px;
+      overflow: hidden;
+    }
+
+    .capsule-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--card-accent, var(--color-rose));
+      opacity: 0.7;
+      transition: opacity 0.3s;
+    }
+
+    /* Subtle botanical corner flower watermark inside card */
+    .card-corner-flower {
+      position: absolute;
+      bottom: -15px;
+      right: -15px;
+      width: 75px;
+      height: 75px;
+      opacity: 0.12;
+      pointer-events: none;
+      filter: grayscale(30%);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .capsule-card:hover .card-corner-flower {
+      opacity: 0.25;
+      transform: scale(1.1) rotate(10deg);
+    }
+
+    .capsule-card:hover {
+      transform: translateY(-5px);
+      background: var(--bg-card-hover);
+      border-color: var(--border-active);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), var(--shadow-glow);
+    }
+
+    .capsule-card.unlocked {
+      border-color: rgba(217, 160, 168, 0.4);
+      background: linear-gradient(145deg, rgba(38, 20, 31, 0.94) 0%, rgba(27, 15, 23, 0.96) 100%);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .chapter-num {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--color-rose);
+      line-height: 1;
+    }
+
+    .category-tag {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--color-text-dim);
+      letter-spacing: 0.04em;
+    }
+
+    .card-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 600;
+      color: #FFF;
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+
+    .card-quote-preview {
+      font-size: 13px;
+      color: var(--color-text-dim);
+      font-style: italic;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin-bottom: 16px;
+      line-height: 1.45;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 12px;
+      color: var(--color-text-dim);
+      position: relative;
+      z-index: 2;
+    }
+
+    .status-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 500;
+    }
+
+    .capsule-card.unlocked .status-badge {
+      color: var(--color-gold);
+    }
+
+    .wax-seal-mini {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--color-rose-deep);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFF;
+      font-size: 11px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Modal Overlay & Letter Experience */
+    /* z-index: 100 with backdrop-blur completely shields reading text from falling background petals */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 5, 8, 0.9);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .modal-letter {
+      background: #FAF6F0;
+      color: #2B1718;
+      width: 100%;
+      max-width: 680px;
+      max-height: 90vh;
+      border-radius: 24px;
+      padding: clamp(24px, 5vw, 42px);
+      position: relative;
+      overflow-y: auto;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.85), 0 0 50px rgba(217, 160, 168, 0.25);
+      border: 6px solid #FFF;
+      transform: scale(0.92) translateY(20px);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .modal-overlay.active .modal-letter {
+      transform: scale(1) translateY(0);
+    }
+
+    .btn-close-modal {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(43, 23, 24, 0.08);
+      color: #2B1718;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+      z-index: 10;
+    }
+
+    .btn-close-modal:hover {
+      background: rgba(43, 23, 24, 0.16);
+    }
+
+    .letter-header {
+      border-bottom: 2px dashed rgba(168, 92, 112, 0.25);
+      padding-bottom: 18px;
+      margin-bottom: 22px;
+      position: relative;
+    }
+
+    /* Pressed flower keepsake badge in letter header */
+    .letter-flower-stamp {
+      position: absolute;
+      top: 0;
+      right: 40px;
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+      opacity: 0.85;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
+      transform: rotate(12deg);
+    }
+
+    .letter-chapter-badge {
+      display: inline-block;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-rose-deep);
+      margin-bottom: 6px;
+    }
+
+    .letter-title {
+      font-family: var(--font-display);
+      font-size: clamp(26px, 4vw, 36px);
+      font-weight: 700;
+      color: #2B1718;
+      line-height: 1.15;
+      margin-bottom: 8px;
+      padding-right: 60px;
+    }
+
+    .letter-meta {
+      font-size: 13px;
+      color: #7A5B64;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    /* Quote bubble in letter */
+    .chat-quote-bubble {
+      background: #F3E9E2;
+      border-left: 4px solid var(--color-rose-deep);
+      border-radius: 0 14px 14px 0;
+      padding: 14px 18px;
+      margin-bottom: 22px;
+      font-size: 14px;
+      color: #4A2E35;
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    /* Modal Illustration */
+    .letter-art-wrapper {
+      width: 100%;
+      height: 250px;
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      position: relative;
+    }
+
+    .letter-art-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    /* Letter Body Prose */
+    .letter-body {
+      font-family: var(--font-display);
+      font-size: clamp(17px, 2.5vw, 20px);
+      line-height: 1.65;
+      color: #2F1B20;
+      margin-bottom: 30px;
+    }
+
+    .letter-signature {
+      font-family: var(--font-script);
+      font-size: 32px;
+      color: var(--color-rose-deep);
+      text-align: right;
+      padding-top: 10px;
+    }
+
+    /* Modal Nav Buttons */
+    .modal-nav-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(43, 23, 24, 0.1);
+    }
+
+    .btn-nav {
+      padding: 10px 20px;
+      border-radius: 30px;
+      border: 1px solid rgba(43, 23, 24, 0.2);
+      background: #FFF;
+      color: #2B1718;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-nav:hover {
+      background: var(--color-rose-deep);
+      color: #FFF;
+      border-color: var(--color-rose-deep);
+    }
+
+    /* Grand Finale Banner & Modal with Blooming Floral Border */
+    .finale-box {
+      margin-top: 50px;
+      background: linear-gradient(135deg, rgba(230, 186, 117, 0.15) 0%, rgba(168, 92, 112, 0.2) 100%);
+      border: 2px solid var(--color-gold);
+      border-radius: 24px;
+      padding: 35px 25px;
+      text-align: center;
+      display: none;
+      box-shadow: var(--shadow-glow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .finale-box.active {
+      display: block;
+      animation: fadeIn 0.8s ease;
+    }
+
+    .finale-flowers-row {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+
+    .finale-flower-item {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .btn-cta-gold {
+      display: inline-block;
+      margin-top: 18px;
+      background: linear-gradient(135deg, var(--color-gold) 0%, #D49B28 100%);
+      color: #120A0E;
+      font-weight: 700;
+      padding: 14px 32px;
+      border-radius: 40px;
+      text-decoration: none;
+      box-shadow: 0 10px 25px rgba(230, 186, 117, 0.35);
+      transition: transform 0.25s, box-shadow 0.25s;
+      cursor: pointer;
+      border: none;
+      font-size: 15px;
+    }
+
+    .btn-cta-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(230, 186, 117, 0.5);
+    }
+
+    /* Actions bottom bar */
+    .controls-footer {
+      margin-top: 40px;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      color: var(--color-text-dim);
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #FFF;
+      border-color: var(--border-active);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 640px) {
+      .app-container {
+        padding: 20px 14px 60px 14px;
+      }
+      .hero-floral-left, .hero-floral-right {
+        display: none;
+      }
+      .capsule-grid {
+        grid-template-columns: 1fr;
+      }
+      .modal-letter {
+        padding: 24px 18px;
+      }
+      .letter-art-wrapper {
+        height: 180px;
+      }
+      .letter-title {
+        padding-right: 40px;
+      }
+      .letter-flower-stamp {
+        width: 38px;
+        height: 38px;
+        right: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Translucent Falling Rose Petals Canvas -->
+  <canvas id="petals-canvas"></canvas>
+
+  <!-- Audio Element -->
+  <audio id="ambient-audio" loop preload="auto">
+    <source src="assets/audio/soundtrack.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="app-container">
+    
+    <!-- Hero Header with Botanical Flowers -->
+    <header class="hero-header">
+      <img src="assets/images/flowers/flower_07.png" class="hero-floral-left" alt="Flower Accent Left">
+      <img src="assets/images/flowers/flower_18.png" class="hero-floral-right" alt="Flower Accent Right">
+
+      <div class="badge-milestone">
+        <img src="assets/images/flowers/flower_12.png" class="badge-flower-icon" alt="Flower Icon">
+        <span>November 15, 2026 · Cairo, Egypt</span>
+      </div>
+      <h1 class="hero-title">24 Chapters of Aya</h1>
+      <p class="hero-subtitle">A Little Autumn Capsule for Your 24th Birthday ♡</p>
+      <p class="hero-dedication">
+        Twenty-four sealed notes for your twenty-fourth year. Inside jokes from late-night games, 
+        shared memories, quiet reassurances, and the dreams waiting for you in autumn.
+      </p>
+
+      <!-- Music Pill -->
+      <div class="audio-pill" id="audio-toggle" title="Click to toggle autumn piano soundtrack">
+        <div class="vinyl-icon" id="vinyl-disc"></div>
+        <span class="audio-text" id="audio-label">Play Autumn Soundtrack ♫</span>
+      </div>
+    </header>
+
+    <!-- Progress Tracker Card -->
+    <section class="tracker-card">
+      <div class="tracker-row">
+        <div class="tracker-label">
+          <span>✉️ Capsule Progress:</span>
+          <span id="tracker-status">0 of 24 Unlocked</span>
+        </div>
+        <div class="tracker-count" id="tracker-percent">0%</div>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-bar"></div>
+      </div>
+    </section>
+
+    <!-- Filter Bar -->
+    <nav class="filter-bar">
+      <button class="filter-btn active" data-filter="all">All (24)</button>
+      <button class="filter-btn" data-filter="Inside Joke">Inside Jokes 🎮</button>
+      <button class="filter-btn" data-filter="Her Soul">Her Soul 🍂</button>
+      <button class="filter-btn" data-filter="Future Dream">Future Dreams ✈️</button>
+      <button class="filter-btn" data-filter="Reassurance">Reassurances 🕊️</button>
+      <button class="filter-btn" data-filter="Birthday Wish">Birthday Wishes 🎂</button>
+    </nav>
+
+    <!-- Capsule Cards Grid -->
+    <main class="capsule-grid" id="capsule-grid">
+      <!-- Populated via JavaScript -->
+    </main>
+
+    <!-- Grand Finale Container (Revealed when 24/24 unlocked) -->
+    <section class="finale-box" id="finale-section">
+      <div class="finale-flowers-row">
+        <img src="assets/images/flowers/flower_01.png" class="finale-flower-item" alt="Flower">
+        <img src="assets/images/flowers/flower_08.png" class="finale-flower-item" alt="Flower">
+        <img src="assets/images/flowers/flower_15.png" class="finale-flower-item" alt="Flower">
+        <img src="assets/images/flowers/flower_22.png" class="finale-flower-item" alt="Flower">
+        <img src="assets/images/flowers/flower_30.png" class="finale-flower-item" alt="Flower">
+      </div>
+      <h2 style="font-family: var(--font-display); font-size: 32px; color: var(--color-gold); margin-bottom: 10px;">
+        ✨ You Unlocked All 24 Chapters, Aya ✨
+      </h2>
+      <p style="color: var(--color-ivory); font-size: 16px; max-width: 600px; margin: 0 auto 15px auto;">
+        From a random Super Sus lobby to 22,000+ messages across the miles, every single chapter proves how rare and cherished you are. 
+        Your 60-second cinematic film is waiting for you.
+      </p>
+      <button class="btn-cta-gold" id="btn-replay-film">
+        🎬 Replay "The Autumn Letter" Film
+      </button>
+    </section>
+
+    <!-- Utility Controls -->
+    <footer class="controls-footer">
+      <button class="btn-secondary" id="btn-unlock-all">Unlock All Notes</button>
+      <button class="btn-secondary" id="btn-reset-progress">Reset Progress</button>
+    </footer>
+
+  </div>
+
+  <!-- Interactive Modal Letter Reader -->
+  <div class="modal-overlay" id="letter-modal">
+    <div class="modal-letter" id="modal-letter-content">
+      <button class="btn-close-modal" id="btn-close-modal">&times;</button>
+      
+      <div class="letter-header">
+        <img src="assets/images/flowers/flower_12.png" class="letter-flower-stamp" id="modal-flower-stamp" alt="Pressed Flower">
+        <span class="letter-chapter-badge" id="modal-chapter-badge">Chapter 01 · Inside Joke</span>
+        <h2 class="letter-title" id="modal-title">Title Here</h2>
+        <div class="letter-meta">
+          <span id="modal-date">Date Here</span>
+          <span>•</span>
+          <span id="modal-tag">Tag</span>
+        </div>
+      </div>
+
+      <div class="chat-quote-bubble" id="modal-quote">
+        "Chat quote snippet goes here"
+      </div>
+
+      <div class="letter-art-wrapper" id="modal-art-wrapper">
+        <img src="" class="letter-art-img" id="modal-art-img" alt="Illustration">
+      </div>
+
+      <div class="letter-body" id="modal-body">
+        Letter prose goes here...
+      </div>
+
+      <div class="letter-signature">
+        — San ♡
+      </div>
+
+      <div class="modal-nav-row">
+        <button class="btn-nav" id="btn-prev-note">← Previous Note</button>
+        <button class="btn-nav" id="btn-next-note">Next Note →</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const CHAPTERS_DATA = [
+  {
+    "id": 1,
+    "category": "Inside Joke",
+    "title": "The Super Sus Lobby",
+    "date": "Summer 2026 · Late Night Game",
+    "quote": "I said it once while we play super sus... who knew a random lobby would lead to this?",
+    "text": "Out of all the millions of gaming lobbies running across the world, we somehow ended up in the very same one. It started with frantic voting, accusations, laughing late into the night, and wondering who this mysterious girl playing from Cairo was. Some meetings feel like random luck, but looking back, it feels like the universe was quietly plotting something wonderful.",
+    "image": "assets/images/forest.jpg",
+    "badge": "🎮 Lobby Origins",
+    "accent": "#A85C70",
+    "flower": "assets/images/flowers/flower_01.png"
+  },
+  {
+    "id": 2,
+    "category": "Inside Joke",
+    "title": "The Mystery of the Unpinned Birthday",
+    "date": "Aug 28 · 9:42 PM",
+    "quote": "San: wth i had pinned your bday where did it go... why did you unpin????? / Mari: His presence was just distracting me that's all.. It's okay if you ask me anytime I'll tell you.",
+    "text": "To this day, the excuse 'his presence was just distracting me' is the funniest and cutest defense in chat history. You unpinned your own birthday because looking at it made you blush or lose focus! Don't worry—15/11/2002 was permanently memorized in my head the very second you said it. It's pinned forever now.",
+    "image": "assets/images/desk.jpg",
+    "badge": "📌 Pinned Forever",
+    "accent": "#D9A0A8",
+    "flower": "assets/images/flowers/flower_02.png"
+  },
+  {
+    "id": 3,
+    "category": "Inside Joke",
+    "title": "The Sleep Schedule Delusion",
+    "date": "July 18 · 12:17 PM",
+    "quote": "My vacation started in July and ever since then my sleep schedule has been messed up so I want to get it back on track... tomorrow.",
+    "text": "The greatest ongoing lie of 2026: 'I am definitely fixing my sleep schedule tonight.' Then 3:30 AM arrives, and we're still debating music, psychology, and life. Your night owl energy is when your mind is at its most creative, honest, and hilariously dramatic. Never apologize for those late-night talks.",
+    "image": "assets/images/bedroom.jpg",
+    "badge": "🌙 3:30 AM Club",
+    "accent": "#9E7682",
+    "flower": "assets/images/flowers/flower_03.png"
+  },
+  {
+    "id": 4,
+    "category": "Reassurance",
+    "title": "Overthinker Pro Max",
+    "date": "Sept 12 · 1:38 AM",
+    "quote": "Mari: I'm overthinking everything and I have trust issues sooo you can't hehe / San: im overthinker pro max.",
+    "text": "You tend to analyze every detail, guard your heart with humor, and wonder if people will stick around when life gets messy. When two overthinkers meet, they either drive each other crazy or become the only people who truly get each other's quiet fears. With me, you never have to pretend you're fine or filter your worries. You're safe here.",
+    "image": "assets/images/mari_portrait.png",
+    "badge": "🛡️ Safe Zone",
+    "accent": "#B3828B",
+    "flower": "assets/images/flowers/flower_04.png"
+  },
+  {
+    "id": 5,
+    "category": "Inside Joke",
+    "title": "The World's Longest Nickname",
+    "date": "Oct 02 · 9:35 PM",
+    "quote": "popeyes biscuits with no drink majestic discord kitten honey bun sugar booger booboo bear sweet vanilla cake...",
+    "text": "Normal people give each other simple nicknames. We somehow ended up reciting an entire fast-food dessert menu combined with absurdity! You pretended to roll your eyes, but you were definitely smiling behind your phone. Only you could inspire a nickname that takes 30 seconds to read aloud.",
+    "image": "assets/images/mari_portrait.png",
+    "badge": "🍯 Honey Bun",
+    "accent": "#D4A373",
+    "flower": "assets/images/flowers/flower_05.png"
+  },
+  {
+    "id": 6,
+    "category": "Memory",
+    "title": "The Cairo vs. IST Timezone Duel",
+    "date": "Every Single Evening",
+    "quote": "Are you awake? What time is it there?",
+    "text": "Constantly doing mental math to calculate the time difference between Cairo winter hours and IST. Seeing that little notification pop up when you finally wake up or when you're cozy in bed with your phone at night makes whatever long day I had completely fade away.",
+    "image": "assets/images/bedroom.jpg",
+    "badge": "⏳ 3.5 Hours Apart",
+    "accent": "#8C5E6B",
+    "flower": "assets/images/flowers/flower_06.png"
+  },
+  {
+    "id": 7,
+    "category": "Her Soul",
+    "title": "The Autumn Child",
+    "date": "Aug 28 · 9:39 PM",
+    "quote": "I love autumn because I was born in that season, and I also love its atmosphere. I absolutely hate summer though—I feel like I have no energy all the time 😭😂.",
+    "text": "You were born on November 15, right in the heart of golden leaves, chilly evening winds, and rainy skies. Summer drains you, but autumn brings you to life. The moment the temperature drops in Cairo, your whole soul lights up. You carry the warmth of autumn everywhere you go.",
+    "image": "assets/images/forest.jpg",
+    "badge": "🍁 Autumn Born",
+    "accent": "#C86D51",
+    "flower": "assets/images/flowers/flower_07.png"
+  },
+  {
+    "id": 8,
+    "category": "Her Soul",
+    "title": "Hot Black Tea & Mint Therapy",
+    "date": "Every Study Night",
+    "quote": "Let me make a hot cup of tea first...",
+    "text": "Your ritual: a steaming ceramic mug, hot black tea, fresh mint leaves, and a quiet corner to breathe. No problem in the world—whether exams, overthinking, or chaotic days—cannot be softened by a hot cup of tea. It's your quiet sanctuary, and I hope someone always keeps your mug full.",
+    "image": "assets/images/mari_portrait.png",
+    "badge": "🍵 Tea Sanctuary",
+    "accent": "#738B71",
+    "flower": "assets/images/flowers/flower_08.png"
+  },
+  {
+    "id": 9,
+    "category": "Her Soul",
+    "title": "The Palette: Pink, Black, Grey & Brown",
+    "date": "Aug 22 · 10:06 PM",
+    "quote": "Pink Black Grey Brown, that's her favourite colours.",
+    "text": "Not many people can pull off this exact aesthetic: the gentle, vulnerable tenderness of dusty pink, balanced by the cool mystery of charcoal black, soft stormy grey, and warm earthy mocha brown. It's soft yet grounded, delicate yet resilient—just like you.",
+    "image": "assets/images/mari_portrait.png",
+    "badge": "🎨 Her Colors",
+    "accent": "#9E6B7A",
+    "flower": "assets/images/flowers/flower_09.png"
+  },
+  {
+    "id": 10,
+    "category": "Her Soul",
+    "title": "The Cigarettes After Sex Sanctuary",
+    "date": "Late Night Playlist",
+    "quote": "My fav are: Keep on loving you, Affection, Sweet, K., Sunsetz.",
+    "text": "Putting your headphones on, turning the lights low, and letting Greg Gonzalez's reverb-soaked guitars melt into the room. Sunsetz playing as the sky turns dark outside your window. Those tracks don't just feel like music to you; they feel like a quiet universe where nobody can bother you.",
+    "image": "assets/images/desk.jpg",
+    "badge": "🎧 Sunsetz & Reverb",
+    "accent": "#5E6973",
+    "flower": "assets/images/flowers/flower_10.png"
+  },
+  {
+    "id": 11,
+    "category": "Inside Joke",
+    "title": "The Secret Tearjerker",
+    "date": "Movie Night Reflection",
+    "quote": "Watched Kal Ho Naa Ho twice... made me cry so much.",
+    "text": "For someone who jokes about having a cold heart or trust issues, you are secretly the biggest softie when it comes to emotional movies! Crying through Bollywood tragedies and melting over cute K-drama romances proves how much empathy and heart you actually have inside.",
+    "image": "assets/images/mari_standing.png",
+    "badge": "🎬 Softie at Heart",
+    "accent": "#B85D6C",
+    "flower": "assets/images/flowers/flower_11.png"
+  },
+  {
+    "id": 12,
+    "category": "Memory",
+    "title": "Cairo Rain & Cold Windows",
+    "date": "Autumn in Cairo",
+    "quote": "There’s usually only light rain during autumn and winter... I'm waiting for it 🥹",
+    "text": "Waiting for that rare, quiet Cairo rain to patter against the window glass. Wrapping yourself in an oversized cream sweater, listening to the drops hit the pavement outside, and wishing the weather could stay like this forever. Here's to a winter full of rain for you.",
+    "image": "assets/images/bedroom.jpg",
+    "badge": "🌧️ Cairo Rain",
+    "accent": "#6D7993",
+    "flower": "assets/images/flowers/flower_12.png"
+  },
+  {
+    "id": 13,
+    "category": "Future Dream",
+    "title": "Future Dr. Aya, Clinical Psychotherapist",
+    "date": "Academic Milestone",
+    "quote": "There’s a one year diploma in clinical psychology... thinking about continuing my education.",
+    "text": "You graduated college this year, and you chose to dedicate your path to understanding the human mind and healing hearts. You have an instinctive intuition for why people hurt and what they need to hear. One day, people will walk into your quiet clinic room carrying burdens they couldn't tell anyone else, and they will leave feeling lighter because of you.",
+    "image": "assets/images/mari_portrait.png",
+    "badge": "🩺 Future Dr. Aya",
+    "accent": "#8A5A70",
+    "flower": "assets/images/flowers/flower_13.png"
+  },
+  {
+    "id": 14,
+    "category": "Future Dream",
+    "title": "A Little Independent Home",
+    "date": "Dream Life Vision",
+    "quote": "I really want to live on my own, raise a little cat, and be independent.",
+    "text": "A peaceful apartment with large windows that let the autumn sunlight spill across the floor. Wooden bookshelves lining the walls, a comfortable sofa with a soft knit throw, plants on the sill, and the quiet freedom of your own space. It's not just a daydream—it's coming, step by step.",
+    "image": "assets/images/home.jpg",
+    "badge": "🏡 Peaceful Corner",
+    "accent": "#A37055",
+    "flower": "assets/images/flowers/flower_14.png"
+  },
+  {
+    "id": 15,
+    "category": "Future Dream",
+    "title": "Mochi the Companion",
+    "date": "The Kitten Pact",
+    "quote": "A little cat sleeping beside me...",
+    "text": "We gave him a name, a pink bell collar, and an anime debut in your birthday film. A fluffy little grey-and-white tabby kitten who curls up at the foot of your bed, kneads your blanket while you read psychology papers, and nudges your hand when you've been staring at a screen too long. Mochi is waiting for you in your future.",
+    "image": "assets/images/mochi.png",
+    "badge": "🐾 Mochi the Tabby",
+    "accent": "#BF8A96",
+    "flower": "assets/images/flowers/flower_15.png"
+  },
+  {
+    "id": 16,
+    "category": "Future Dream",
+    "title": "Golden Ginkgo Leaves in Seoul",
+    "date": "Travel Dream 01",
+    "quote": "I really want to travel to Korea someday...",
+    "text": "Walking down the cobblestone alleys of Bukchon Hanok Village in October, with golden ginkgo leaves raining down around your white sneakers. Drinking warm barley tea in a quiet traditional wooden cafe with N Seoul Tower visible on the mountain ridge. You will walk that street.",
+    "image": "assets/images/seoul.jpg",
+    "badge": "🇰🇷 Seoul in Autumn",
+    "accent": "#D49B28",
+    "flower": "assets/images/flowers/flower_16.png"
+  },
+  {
+    "id": 17,
+    "category": "Future Dream",
+    "title": "Golden Hour on Spanish Cobblestones",
+    "date": "Travel Dream 02",
+    "quote": "Or Spain...",
+    "text": "Wandering through the Gothic quarter in Barcelona or the winding alleys of Andalusia as the Mediterranean sunset turns the ancient stone buildings into warm honey. Holding an old film camera, snapping photos of wrought-iron balconies dripping with flowers, feeling completely free.",
+    "image": "assets/images/spain.jpg",
+    "badge": "🇪🇸 Golden Spain",
+    "accent": "#C26D45",
+    "flower": "assets/images/flowers/flower_17.png"
+  },
+  {
+    "id": 18,
+    "category": "Reassurance",
+    "title": "Safe With You",
+    "date": "Emotional Milestone",
+    "quote": "I don't open up easily... but with you it feels safe.",
+    "text": "Trust is something you don't give away easily, and you shouldn't. The fact that you share your real thoughts, your worries, and your unvarnished self with me is something I protect with everything I have. Whatever changes in life, this space between us remains a judgment-free, safe zone.",
+    "image": "assets/images/mari_portrait.png",
+    "badge": "🕊️ Unconditional Safe",
+    "accent": "#9E5C6D",
+    "flower": "assets/images/flowers/flower_18.png"
+  },
+  {
+    "id": 19,
+    "category": "Reassurance",
+    "title": "You Are Allowed to Rest",
+    "date": "Midnight Reminder",
+    "quote": "I feel like I have no energy...",
+    "text": "You put so much pressure on yourself to have everything figured out, to be strong, to carry your diploma workload, and to manage every expectation. But rest is not something you have to earn by exhausting yourself. You are allowed to take off your armor, breathe, and simply be Aya.",
+    "image": "assets/images/bedroom.jpg",
+    "badge": "🌿 Breathe Deeply",
+    "accent": "#6E8270",
+    "flower": "assets/images/flowers/flower_19.png"
+  },
+  {
+    "id": 20,
+    "category": "Reassurance",
+    "title": "The Distance Is Just Geography",
+    "date": "Late Night Reflection",
+    "quote": "Miles mean nothing when two minds share the same wavelength.",
+    "text": "Thousands of miles separate Cairo and Kerala. Flights, borders, and oceans lie in between. But emotional closeness isn't measured in kilometers. When we talk, it feels like sitting across the same small cafe table with two cups of hot tea. Real connections don't fade across borders.",
+    "image": "assets/images/desk.jpg",
+    "badge": "🌍 Across The Miles",
+    "accent": "#736070",
+    "flower": "assets/images/flowers/flower_20.png"
+  },
+  {
+    "id": 21,
+    "category": "Her Soul",
+    "title": "The Little Things That Make You, You",
+    "date": "Daily Observations",
+    "quote": "The quiet details nobody else notices...",
+    "text": "The way your typing speed speeds up when you're excited. The specific combination of laughing and crying emojis when you're overwhelmed. How you pretend to be tough but melt the second you see a baby animal. The way you care about people's feelings even when they frustrate you. These are the details that make you rare.",
+    "image": "assets/images/mari_portrait.png",
+    "badge": "✨ Uniquely Aya",
+    "accent": "#A36578",
+    "flower": "assets/images/flowers/flower_21.png"
+  },
+  {
+    "id": 22,
+    "category": "Birthday Wish",
+    "title": "The 24-Year Journey",
+    "date": "November 15, 2002 → 2026",
+    "quote": "24 years of growing, learning, and becoming.",
+    "text": "Think about everything the little girl born on November 15, 2002 has lived through. The doubts she faced, the late-night tears, the exams passed, the graduation gown worn, and the courage it took to choose clinical psychology. Every single chapter brought you to this moment. You should be so proud of the woman you are at 24.",
+    "image": "assets/images/mari_standing.png",
+    "badge": "🌟 24 Milestones",
+    "accent": "#C48A54",
+    "flower": "assets/images/flowers/flower_22.png"
+  },
+  {
+    "id": 23,
+    "category": "Reassurance",
+    "title": "The Voice That Brings Calm",
+    "date": "A Quiet Truth",
+    "quote": "Somewhere in this little world, there is someone worth celebrating.",
+    "text": "You bring so much calm and genuine warmth into my life. When the world is loud, talking to you feels like stepping inside from a cold storm into a warm room with a fireplace. Never forget how much light you bring to the people who are lucky enough to know you.",
+    "image": "assets/images/mari_portrait.png",
+    "badge": "🕯️ Warm Hearth",
+    "accent": "#9E4A5F",
+    "flower": "assets/images/flowers/flower_23.png"
+  },
+  {
+    "id": 24,
+    "category": "Birthday Wish",
+    "title": "The 24th Birthday Blessing (Nov 15)",
+    "date": "November 15, 2026 · Midnight",
+    "quote": "كل سنة وانتي طيبة يا آية ♡ Happy Birthday, Mari — San",
+    "text": "Happy 24th Birthday, dearest Aya (كل سنة وانتي طيبة يا أجمل آية). May this 24th year grant you the peace you always seek in autumn. May your clinical diploma bring you deep fulfillment, may your future home and kitten become real sooner than you think, and may you never doubt how deeply cherished, respected, and loved you are. Wherever your dreams take you—whether Seoul, Spain, or beyond—I'll always be cheering for you from the front row. Happy Birthday, Mari. ♡",
+    "image": "assets/images/sunset.jpg",
+    "badge": "🎂 Happy 24th Aya",
+    "accent": "#E6BA75",
+    "flower": "assets/images/flowers/flower_24.png"
+  }
+];
+
+    // State management with localStorage
+    let unlockedIds = new Set();
+    try {
+      const saved = localStorage.getItem('aya_unlocked_chapters');
+      if (saved) {
+        unlockedIds = new Set(JSON.parse(saved));
+      }
+    } catch (e) {
+      console.warn('localStorage access failed', e);
+    }
+
+    let activeFilter = 'all';
+    let currentOpenIndex = 0;
+
+    // ========================================================
+    // TRANSLUCENT FALLING ROSE PETALS (12 Authentic Sprites)
+    // Non-obstructive, 3D tumbling, gentle watercolor drift
+    // ========================================================
+    const canvas = document.getElementById('petals-canvas');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+
+    function resizeCanvas() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    // Pre-load all 12 authentic rose petal sprites
+    const PETAL_SRCS = Array.from({length: 12}, (_, i) => 
+      `assets/images/petals/petal_${String(i + 1).padStart(2, '0')}.png`
+    );
+    const petalImages = PETAL_SRCS.map(src => {
+      const img = new Image();
+      img.src = src;
+      return img;
+    });
+
+    class TranslucentRosePetal {
+      constructor() {
+        this.reset(true);
+      }
+      reset(initial = false) {
+        this.x = Math.random() * width;
+        this.y = initial ? Math.random() * height : -60;
+        this.img = petalImages[Math.floor(Math.random() * petalImages.length)];
+        
+        // Base width: delicate size 26px to 48px
+        this.baseWidth = Math.random() * 22 + 26;
+        
+        // Gentle descent speed (0.65 to 1.35 px/frame)
+        this.speedY = Math.random() * 0.7 + 0.65;
+        this.swayFreq = Math.random() * 0.008 + 0.005;
+        this.swayAmp = Math.random() * 1.8 + 1.2;
+        this.swayPhase = Math.random() * Math.PI * 2;
+        
+        // 2D Rotation and 3D Tumbling/Flip
+        this.angle = Math.random() * 360;
+        this.angularSpeed = (Math.random() - 0.5) * 1.1;
+        this.flipAngle = Math.random() * Math.PI * 2;
+        this.flipSpeed = Math.random() * 0.024 + 0.012;
+        
+        // Translucency: 0.28 to 0.48 so text beneath is 100% readable!
+        this.baseAlpha = Math.random() * 0.20 + 0.28;
+      }
+      update() {
+        this.y += this.speedY;
+        this.x += Math.sin(this.y * this.swayFreq + this.swayPhase) * this.swayAmp;
+        this.angle += this.angularSpeed;
+        this.flipAngle += this.flipSpeed;
+        
+        if (this.y > height + 60) {
+          this.reset();
+        }
+      }
+      draw() {
+        if (!this.img.complete || this.img.naturalWidth === 0) return;
+        
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.angle * Math.PI / 180);
+        
+        // 3D tumble flip (scales along horizontal axis)
+        const flipScale = Math.cos(this.flipAngle);
+        ctx.scale(flipScale, 1);
+        
+        // Fade in gently at top and fade out at bottom edge
+        let edgeAlpha = 1.0;
+        if (this.y < 80) edgeAlpha = Math.max(0, this.y / 80);
+        else if (this.y > height - 80) edgeAlpha = Math.max(0, (height - this.y) / 80);
+        
+        ctx.globalAlpha = this.baseAlpha * edgeAlpha;
+        
+        const w = this.baseWidth;
+        const h = (this.img.naturalHeight / this.img.naturalWidth) * w;
+        ctx.drawImage(this.img, -w / 2, -h / 2, w, h);
+        ctx.restore();
+      }
+    }
+
+    const petals = [];
+    const PETAL_COUNT = 24; // Balanced count: rich atmosphere without cluttering
+    for (let i = 0; i < PETAL_COUNT; i++) {
+      petals.push(new TranslucentRosePetal());
+    }
+
+    function animatePetals() {
+      ctx.clearRect(0, 0, width, height);
+      for (let p of petals) {
+        p.update();
+        p.draw();
+      }
+      requestAnimationFrame(animatePetals);
+    }
+    animatePetals();
+
+    // Web Audio Sound FX for gentle chimes
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    let audioCtx = null;
+    function playChime(freq = 520) {
+      try {
+        if (!audioCtx) audioCtx = new AudioContext();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(freq * 1.5, audioCtx.currentTime + 0.35);
+        gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.4);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.4);
+      } catch(e) {}
+    }
+
+    // Audio Player Toggle
+    const audioToggle = document.getElementById('audio-toggle');
+    const ambientAudio = document.getElementById('ambient-audio');
+    const vinylDisc = document.getElementById('vinyl-disc');
+    const audioLabel = document.getElementById('audio-label');
+    let isPlaying = false;
+
+    audioToggle.addEventListener('click', () => {
+      if (!isPlaying) {
+        ambientAudio.play().then(() => {
+          isPlaying = true;
+          vinylDisc.classList.add('playing');
+          audioLabel.textContent = 'Autumn Soundtrack (Playing) ♫';
+        }).catch(err => {
+          console.warn('Playback error', err);
+        });
+      } else {
+        ambientAudio.pause();
+        isPlaying = false;
+        vinylDisc.classList.remove('playing');
+        audioLabel.textContent = 'Play Autumn Soundtrack ♫';
+      }
+    });
+
+    // Render Cards Grid
+    const capsuleGrid = document.getElementById('capsule-grid');
+    const trackerStatus = document.getElementById('tracker-status');
+    const trackerPercent = document.getElementById('tracker-percent');
+    const progressBar = document.getElementById('progress-bar');
+    const finaleSection = document.getElementById('finale-section');
+
+    function updateProgress() {
+      const count = unlockedIds.size;
+      const pct = Math.round((count / CHAPTERS_DATA.length) * 100);
+      trackerStatus.textContent = `${count} of ${CHAPTERS_DATA.length} Unlocked`;
+      trackerPercent.textContent = `${pct}%`;
+      progressBar.style.width = `${pct}%`;
+
+      if (count === CHAPTERS_DATA.length) {
+        finaleSection.classList.add('active');
+      } else {
+        finaleSection.classList.remove('active');
+      }
+
+      try {
+        localStorage.setItem('aya_unlocked_chapters', JSON.stringify(Array.from(unlockedIds)));
+      } catch (e) {}
+    }
+
+    function renderCards() {
+      capsuleGrid.innerHTML = '';
+      const filtered = activeFilter === 'all' 
+        ? CHAPTERS_DATA 
+        : CHAPTERS_DATA.filter(c => c.category === activeFilter);
+
+      filtered.forEach((chapter, idx) => {
+        const isUnlocked = unlockedIds.has(chapter.id);
+        const card = document.createElement('div');
+        card.className = `capsule-card ${isUnlocked ? 'unlocked' : ''}`;
+        card.style.setProperty('--card-accent', chapter.accent);
+        
+        card.innerHTML = `
+          <!-- Botanical flower watermark in card corner -->
+          <img src="${chapter.flower}" class="card-corner-flower" alt="Flower Accent">
+
+          <div>
+            <div class="card-top">
+              <span class="chapter-num">#${String(chapter.id).padStart(2, '0')}</span>
+              <span class="category-tag">${chapter.category}</span>
+            </div>
+            <h3 class="card-title">${chapter.title}</h3>
+            <p class="card-quote-preview">"${chapter.quote}"</p>
+          </div>
+          <div class="card-footer">
+            <span class="status-badge">
+              <span class="wax-seal-mini">${isUnlocked ? '✉' : '🔒'}</span>
+              ${isUnlocked ? 'Unlocked' : 'Tap to Open'}
+            </span>
+            <span>${chapter.badge}</span>
+          </div>
+        `;
+
+        card.addEventListener('click', () => {
+          openChapterModal(chapter.id - 1);
+        });
+
+        capsuleGrid.appendChild(card);
+      });
+
+      updateProgress();
+    }
+
+    // Filter Buttons
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeFilter = btn.dataset.filter;
+        renderCards();
+      });
+    });
+
+    // Modal Handling
+    const letterModal = document.getElementById('letter-modal');
+    const btnCloseModal = document.getElementById('btn-close-modal');
+    const modalBadge = document.getElementById('modal-chapter-badge');
+    const modalTitle = document.getElementById('modal-title');
+    const modalDate = document.getElementById('modal-date');
+    const modalTag = document.getElementById('modal-tag');
+    const modalQuote = document.getElementById('modal-quote');
+    const modalArtImg = document.getElementById('modal-art-img');
+    const modalBody = document.getElementById('modal-body');
+    const modalFlowerStamp = document.getElementById('modal-flower-stamp');
+    const btnPrev = document.getElementById('btn-prev-note');
+    const btnNext = document.getElementById('btn-next-note');
+
+    function openChapterModal(index) {
+      if (index < 0) index = CHAPTERS_DATA.length - 1;
+      if (index >= CHAPTERS_DATA.length) index = 0;
+      currentOpenIndex = index;
+
+      const chapter = CHAPTERS_DATA[index];
+      unlockedIds.add(chapter.id);
+      playChime(440 + chapter.id * 15);
+
+      modalBadge.textContent = `Chapter ${String(chapter.id).padStart(2, '0')} · ${chapter.category}`;
+      modalTitle.textContent = chapter.title;
+      modalDate.textContent = chapter.date;
+      modalTag.textContent = chapter.badge;
+      modalQuote.textContent = `"${chapter.quote}"`;
+      modalArtImg.src = chapter.image;
+      modalBody.textContent = chapter.text;
+      modalFlowerStamp.src = chapter.flower;
+
+      letterModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+
+      renderCards();
+    }
+
+    function closeModal() {
+      letterModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    btnCloseModal.addEventListener('click', closeModal);
+    letterModal.addEventListener('click', (e) => {
+      if (e.target === letterModal) closeModal();
+    });
+
+    btnPrev.addEventListener('click', () => {
+      openChapterModal(currentOpenIndex - 1);
+    });
+
+    btnNext.addEventListener('click', () => {
+      openChapterModal(currentOpenIndex + 1);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (!letterModal.classList.contains('active')) return;
+      if (e.key === 'Escape') closeModal();
+      if (e.key === 'ArrowLeft') openChapterModal(currentOpenIndex - 1);
+      if (e.key === 'ArrowRight') openChapterModal(currentOpenIndex + 1);
+    });
+
+    // Utility actions
+    document.getElementById('btn-unlock-all').addEventListener('click', () => {
+      CHAPTERS_DATA.forEach(c => unlockedIds.add(c.id));
+      playChime(660);
+      renderCards();
+    });
+
+    document.getElementById('btn-reset-progress').addEventListener('click', () => {
+      if (confirm('Reset your opened capsule progress?')) {
+        unlockedIds.clear();
+        localStorage.removeItem('aya_unlocked_chapters');
+        renderCards();
+      }
+    });
+
+    document.getElementById('btn-replay-film').addEventListener('click', () => {
+      window.open('autumn_letter_60s.mp4', '_blank');
+    });
+
+    // Initial load
+    renderCards();
+  </script>
+</body>
+</html>
