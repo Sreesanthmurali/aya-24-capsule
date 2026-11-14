@@ -844,9 +844,9 @@
       // =========================================================================
       const canvas = document.getElementById('gameCanvas');
       const ctx = canvas.getContext('2d');
-      const W = 1152;
-      const H = 648;
-      const TILE = 54;
+      const W = 960;
+      const H = 540;
+      const TILE = 40;
 
       // Exact requested platformer physics constants
       const PHYS = {
@@ -955,12 +955,25 @@
         }
       }
 
+      const BLOCK_SIZE = 58; // Scaled chunky blocks matching Mari's avatar scale
+      let lastBlockTileX = -999;
+      let lastBlockX = 0;
       function addBlock(tileX, tileY, type = 'brick', content = 'tea') {
+        let bx;
+        if (tileX === lastBlockTileX + 1) {
+          bx = lastBlockX + BLOCK_SIZE;
+        } else {
+          bx = tileX * TILE;
+        }
+        lastBlockTileX = tileX;
+        lastBlockX = bx;
+
+        const by = 240 - (8 - tileY) * 44;
         solidTiles.push({
-          x: tileX * TILE,
-          y: tileY * TILE,
-          w: TILE,
-          h: TILE,
+          x: bx,
+          y: by,
+          w: BLOCK_SIZE,
+          h: BLOCK_SIZE,
           type,
           content,
           bounceY: 0
@@ -1006,6 +1019,8 @@
       }
 
       function buildWorld(worldIdx) {
+        lastBlockTileX = -999;
+        lastBlockX = 0;
         solidTiles = [];
         oneWayPlatforms = [];
         collectibles = [];
