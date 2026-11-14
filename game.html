@@ -844,9 +844,9 @@
       // =========================================================================
       const canvas = document.getElementById('gameCanvas');
       const ctx = canvas.getContext('2d');
-      const W = 960;
-      const H = 540;
-      const TILE = 40;
+      const W = 1152;
+      const H = 648;
+      const TILE = 54;
 
       // Exact requested platformer physics constants
       const PHYS = {
@@ -1219,7 +1219,7 @@
         mari.jumpHoldFrames = 0;
         mari.doubleJumpUsed = false;
         mari.gliding = false;
-        mari.invulnTimer = 90;
+        mari.invulnTimer = 0;
         mari.state = 'idle';
 
         mochi.x = mari.x - 42;
@@ -1561,7 +1561,13 @@
           mari.vx = 0;
         }
         for (const t of solidTiles) {
-          if (aabb(mari, t)) {
+          // 8px vertical inset prevents ground seam snagging
+          if (
+            mari.x < t.x + t.w &&
+            mari.x + mari.w > t.x &&
+            mari.y + 8 < t.y + t.h &&
+            mari.y + mari.h - 8 > t.y
+          ) {
             if (mari.vx > 0) {
               mari.x = t.x - mari.w;
               mari.vx = 0;
@@ -1777,9 +1783,9 @@
           mari.state = 'victory';
         } else if (mari.gliding) {
           mari.state = 'glide';
-        } else if (!mari.grounded) {
+        } else if (!mari.grounded && (mari.vy < -0.8 || mari.vy > 1.8)) {
           mari.state = 'jump';
-        } else if (Math.abs(mari.vx) > 0.35) {
+        } else if (Math.abs(mari.vx) > 0.25) {
           mari.state = 'run';
         } else {
           mari.state = 'idle';
@@ -2421,8 +2427,8 @@
         ctx.restore();
 
         // --- HEROINE MARI (AYA) ---
-        if (mari.invulnTimer > 0 && Math.floor(mari.invulnTimer / 4) % 2 === 0) {
-          return; // Invulnerability blink
+        if (mari.invulnTimer > 0) {
+          ctx.globalAlpha = (Math.floor(mari.invulnTimer / 6) % 2 === 0) ? 0.45 : 0.85;
         }
 
         let spriteKey = '';
@@ -2443,17 +2449,14 @@
           ctx.shadowBlur = 20;
         }
 
-        if (isReady(spriteKey)) {
-          const img = assets[spriteKey];
-          // Use individual image natural dimensions for character size!
-          // Scales 819px height to ~140px tall (prominent, detailed, crystal clear anime heroine)
+        const activeImg = isReady(spriteKey) ? assets[spriteKey] : (isReady('mari_run_1') ? assets['mari_run_1'] : null);
+        if (activeImg) {
           const charScale = 0.17;
-          const drawW = img.naturalWidth * charScale;
-          const drawH = img.naturalHeight * charScale;
-          // Align feet at bottom of hitbox baseline
+          const drawW = activeImg.naturalWidth * charScale;
+          const drawH = activeImg.naturalHeight * charScale;
           const drawX = -drawW / 2;
           const drawY = (mari.h / 2) - drawH;
-          ctx.drawImage(img, drawX, drawY, drawW, drawH);
+          ctx.drawImage(activeImg, drawX, drawY, drawW, drawH);
         } else {
           // Signature Mari illustration fallback: Neat black hijab, cream oversized sweater with navy "M", charcoal pants, sneakers
           const stride = mari.state === 'run' ? Math.sin(globalTick * 0.35) * 4 : 0;
